@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+:root {
+  --background: #07080c;
+  --bg: var(--background);
+  --foreground: #e8e9ed;
+  --muted: #9ca3af;
+  --border: #1f2430;
+  --card: #0f1118;
+  --accent: #22d3ee;
+  --accent-2: #c084fc;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+/**
+ * Section content hierarchy (below each <Section> h2):
+ * section-heading → section-lead → section-card-title → section-accent-line /
+ * section-subtitle → section-meta → section-body (+ section-body-strong) →
+ * section-label → section-tag / section-link.
+ */
+@layer components {
+  .section-heading {
+    @apply break-words font-sans text-2xl font-semibold tracking-tight text-[var(--foreground)] sm:text-3xl;
+  }
+
+  .section-lead {
+    @apply text-base leading-relaxed text-[var(--muted)];
+  }
+
+  .section-card-title {
+    @apply break-words font-sans text-xl font-semibold tracking-tight text-[var(--foreground)] text-pretty;
+  }
+
+  .section-accent-line {
+    @apply font-mono text-base text-[var(--accent)];
+  }
+
+  .section-subtitle {
+    @apply font-sans text-base italic leading-snug text-[var(--foreground)]/90;
+  }
+
+  .section-meta {
+    @apply font-mono text-sm text-[var(--muted)];
+  }
+
+  .section-meta-emphasis {
+    @apply font-mono text-sm font-medium tracking-wide text-[var(--accent-2)]/90;
+  }
+
+  .section-secondary-meta {
+    @apply font-mono text-sm text-[var(--accent-2)];
+  }
+
+  .section-detail {
+    @apply font-mono text-sm leading-relaxed text-[var(--foreground)]/88;
+  }
+
+  .section-body {
+    @apply text-base leading-relaxed text-[var(--muted)];
+  }
+
+  .section-body-strong {
+    @apply text-pretty text-base leading-relaxed text-[var(--foreground)]/92;
+  }
+
+  .section-label {
+    @apply font-mono text-xs uppercase tracking-wider text-[var(--muted)];
+  }
+
+  .section-tag {
+    @apply font-mono text-xs text-[var(--muted)];
+  }
+
+  .section-link {
+    @apply font-mono text-sm text-[var(--accent)] transition hover:underline;
+  }
+
+  .section-link-subtle {
+    @apply font-mono text-xs text-[var(--accent)] underline decoration-[var(--border)] underline-offset-4 transition hover:text-[var(--foreground)] hover:decoration-[var(--accent)]/50;
+  }
+
+  .section-control {
+    @apply font-mono text-sm text-[var(--foreground)];
+  }
+
+  /** Bordered in-card links (events, projects). */
+  .section-pill-link {
+    @apply inline-flex items-center rounded-lg border border-[var(--border)] bg-[var(--background)]/50 px-3 py-1.5 font-mono text-xs text-[var(--accent)] transition hover:border-[var(--accent)]/45 hover:bg-[var(--accent)]/8 hover:text-[var(--foreground)];
+  }
+}
+
+/* Static grid + soft vignette */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    linear-gradient(rgba(34, 211, 238, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.028) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse 85% 65% at 50% 0%, black, transparent);
+  pointer-events: none;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    transparent 0%,
+    rgba(7, 8, 12, 0.65) 100%
+  );
+  opacity: 0.75;
+}
