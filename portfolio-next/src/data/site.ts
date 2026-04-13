@@ -56,9 +56,10 @@ export const rotatingCaptions: string[] = [
 ];
 
 export const aboutParagraphs: string[] = [
-  "Hi there! My name is Akanksha and I am pursuing a Master of Computer Science at Texas A&M University. I completed my B.Tech in Computer Engineering at College of Engineering, Pune (COEP Technological University).",
-  "I have two years of industry experience as a Software Developer at Citicorp Services India, where I worked on data security, microservices, and scalable solutions with Kafka. Through graduate study I aim to deepen how ML and AI can streamline operations and build more consumer-centric systems—and to bridge business needs with solid engineering.",
-  "Outside of code and research I enjoy movies, cooking, evening runs, ping-pong, hiking, and sketching. Reach out if you want to collaborate or chat about an opportunity.",
+  "Hi, I'm Akanksha (she/her), a Software Engineer with a background in Computer Science and an interest in building scalable systems and data-driven applications.",
+  "My work and academic experience have been shaped by an interest in backend engineering, distributed systems, and the intersection of software and AI. I enjoy working on problems involving large-scale data processing, system design, and performance optimization, with a focus on building reliable and efficient systems. More recently, I've been exploring applications of AI in software systems, particularly around large language models (LLMs) and agentic workflows. I'm interested in how LLM-powered agents can be used to enhance developer tools, automate workflows, and make complex systems more intuitive to interact with.",
+  "Outside of engineering, I enjoy discovering new cafes, experimenting with different coffee brews, and working on side projects that help me learn something new.",
+  "Feel free to reach out if you'd like to connect, collaborate, or discuss interesting ideas!",
 ];
 
 export type EducationEntry = {
