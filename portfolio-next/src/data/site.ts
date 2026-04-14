@@ -329,6 +329,13 @@ export type Project = {
   links: { label: string; href: string }[];
   /** Optional image under /public — add files as you scale the portfolio */
   image?: string;
+  /** Optional PDF under /public — shown as an embedded preview in the card */
+  pdfPreview?: string;
+  /** Optional video under /public — looped, autoplay preview in the card */
+  videoPreview?: {
+    src: string;
+    playbackRate?: number;
+  };
 };
 
 /** Add entries here to grow the portfolio; UI filters by tag automatically. */
@@ -337,45 +344,63 @@ export const projects: Project[] = [
     id: "meal-calorie",
     title: "Meal Calorie Prediction",
     description:
-      "Multimodal ML for meal calorie estimation: CGM, microbiome, demographics, and meal images.",
-    tags: ["ML", "Research", "Health"],
-    links: [{ label: "Details (PDF)", href: "/meal.pdf" }],
+      "Built a multimodal deep learning model to estimate lunch calories by combining CGM time-series data, meal images, demographics, and microbiome-related features into a single prediction pipeline.",
+    tags: ["ML", "Deep Learning", "Python"],
+    pdfPreview: "/meal.pdf",
+    links: [
+      {
+        label: "GitHub",
+        href: "https://github.com/shahakanksha-tamu/Meal-Calorie-Prediction",
+      },
+    ],
   },
   {
     id: "summarize-me",
     title: "SummarizeME",
     description:
-      "Text summarization tool: condense long articles and documents into clear, readable summaries.",
-    tags: ["Web", "ML", "NLP"],
+      "AI-powered Chrome plugin that instantly distills long web pages into clear, actionable insights using hierarchical summarization and multiple depth levels, helping users grasp the essentials in seconds.",
+    tags: ["LLM","ML", "NLP", "Chrome Plugin", "Python"],
+    videoPreview: { src: "/summarize_me_recording.mov", playbackRate: 1.25 },
     links: [
       {
-        label: "Demo recording",
-        href: "https://drive.google.com/file/d/1PS1rSf_1QuQ-AMmh1sSottwApywel7AO/view?usp=sharing",
+        label: "GitHub",
+        href: "https://github.com/shahakanksha-tamu/SummarizeME",
       },
+      {
+        label: "Demo Video",
+        href: "https://drive.google.com/file/d/1PS1rSf_1QuQ-AMmh1sSottwApywel7AO/view?usp=sharing",
+      }
     ],
   },
   {
     id: "docquery-ai",
     title: "DocQueryAI",
-    description:
-      "Ask natural-language questions over documents and get context-grounded answers with retrieval-augmented generation.",
-    tags: ["AI", "NLP", "Web"],
-    links: [],
+    tags: ["LLM","ML", "RAG", "Python"],
+    description: "Turns static documents into a conversational knowledge base: ask in plain English and get answers grounded in retrieved source context via RAG—anchored to your documents.",
+    image: "/images/docqueryai_image.png",
+    links: [
+      {
+        label: "GitHub",
+        href: "https://github.com/shahakanksha-tamu/DocQueryAI",
+      },
+    ],
   },
   {
     id: "neo-pm",
     title: "Project Management Tool (Neo)",
     description:
-      "Centralized milestones and progress for students and mentors; analytics for resource and project management.",
-    tags: ["Web", "Product", "Volunteer"],
+      "Built for Teamup's Apps for Good program: one hub where students and mentors align on milestones, log progress, and see cohort status so volunteer-led projects stay organized from kickoff to delivery.",
+    tags: ["Ruby on Rails", "AWS"],
+    image: "/images/neo-pm.svg",
     links: [{ label: "Live", href: "https://teamup.org/apps/neo/" }],
   },
   {
     id: "athread",
     title: "Userland multithreading library",
     description:
-      "Lightweight POSIX-style threading: one-one and many-one models.",
+      "A Lightweight POSIX-style C library based on one-one and many-one threading models.",
     tags: ["C", "Systems", "OS"],
+    image: "/images/threading_image.png",
     links: [
       {
         label: "GitHub",
@@ -383,22 +408,23 @@ export const projects: Project[] = [
       },
     ],
   },
-  {
-    id: "price-tracer",
-    title: "Price Tracer",
-    description:
-      "Web scraping across e-commerce sites with trends, charts, and price-drop alerts.",
-    tags: ["Python", "Web", "Data"],
-    links: [
-      { label: "GitHub", href: "https://github.com/akanksha6082/PriceTracer" },
-    ],
-  },
+  // {
+  //   id: "price-tracer",
+  //   title: "Price Tracer",
+  //   description:
+  //     "Web scraping across e-commerce sites with trends, charts, and price-drop alerts.",
+  //   tags: ["Python", "Web", "Data"],
+  //   links: [
+  //     { label: "GitHub", href: "https://github.com/akanksha6082/PriceTracer" },
+  //   ],
+  // },
   {
     id: "http-server",
     title: "HTTP/1.1 Server",
     description:
-      "Multi-threaded Python server: GET, PUT, POST, DELETE, HEAD; cookies, logging, config.",
+      "Multi-threaded Python HTTP/1.1 server.",
     tags: ["Python", "Networking"],
+    image: "/images/http-server.svg",
     links: [
       { label: "GitHub", href: "https://github.com/akanksha6082/HTTP-Server" },
     ],
@@ -406,8 +432,10 @@ export const projects: Project[] = [
   {
     id: "diff-patch",
     title: "Linux Diff & Patch CLI",
-    description: "Line-by-line diff using LCS; patch workflow in the terminal.",
+    description:
+      "Linux-style diff and patch utilities in C: compare two text files line by line, emit structured edits (add, delete, change), and apply a patch file to update the original from diff output. Implements common diff options including -c, -u, -i, -b, -w, -t, and --help.",
     tags: ["C", "Algorithms", "CLI"],
+    image: "/images/diff-patch.svg",
     links: [
       { label: "GitHub", href: "https://github.com/akanksha6082/Diff-Patch" },
     ],

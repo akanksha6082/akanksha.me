@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, type ReactNode } from "react";
+import { useMemo, useRef, useState, type ReactNode } from "react";
 import { Section } from "./Section";
 import { allProjectTags, projects, type Project } from "@/data/site";
 import { ExternalLink } from "lucide-react";
@@ -16,11 +16,7 @@ export function Projects() {
   return (
     <Section id="projects" title="Projects">
       <p className="section-lead max-w-2xl">
-        Filter by tag or scroll the grid. Add new entries in{" "}
-        <code className="section-tag rounded bg-[var(--card)] px-1.5 py-0.5 text-[var(--accent)]">
-          src/data/site.ts
-        </code>{" "}
-        — the UI updates automatically.
+        Filter by tag or scroll the grid, the UI updates automatically.
       </p>
 
       <div className="mt-6 flex min-w-0 flex-wrap gap-2">
@@ -75,11 +71,34 @@ function FilterChip({
 
 function ProjectCard({ project }: { project: Project }) {
   const [imgOk, setImgOk] = useState(!!project.image);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const playbackRate = project.videoPreview?.playbackRate ?? 1;
 
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--card)] transition hover:border-[var(--accent)]/40">
       <div className="relative aspect-[16/10] w-full bg-[var(--bg)]">
-        {project.image && imgOk ? (
+        {project.videoPreview ? (
+          <video
+            ref={videoRef}
+            className="absolute inset-0 h-full w-full object-cover"
+            src={encodeURI(project.videoPreview.src)}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            onLoadedMetadata={() => {
+              if (videoRef.current) videoRef.current.playbackRate = playbackRate;
+            }}
+          />
+        ) : project.pdfPreview ? (
+          <iframe
+            title={`${project.title} — PDF preview`}
+            src={encodeURI(project.pdfPreview)}
+            className="absolute inset-0 h-full w-full border-0"
+            loading="lazy"
+          />
+        ) : project.image && imgOk ? (
           // eslint-disable-next-line @next/next/no-img-element -- avoids Next Image 404 / "invalid image" logs when assets are missing from public/
           <img
             src={encodeURI(project.image)}
