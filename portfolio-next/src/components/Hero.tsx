@@ -72,7 +72,7 @@ export function Hero() {
               transition={{ duration: 0.45 }}
               className="mt-6 flex min-h-[3rem] justify-center md:min-h-0 md:justify-start"
             >
-              <div className="max-w-2xl border-l-2 border-[var(--accent)]/70 pl-4 text-center md:text-left">
+              <div className="max-w-2xl border-t-2 border-[var(--accent)]/70 pt-3 text-center md:border-l-2 md:border-t-0 md:pl-4 md:pt-0 md:text-left">
                 <p className="text-pretty bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] bg-clip-text font-mono text-[0.8125rem] font-medium leading-relaxed tracking-[0.02em] text-transparent sm:text-sm">
                   {caption}
                 </p>

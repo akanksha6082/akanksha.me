@@ -377,7 +377,7 @@ export const projects: Project[] = [
     title: "DocQueryAI",
     tags: ["LLM","ML", "RAG", "Python"],
     description: "Turns static documents into a conversational knowledge base: ask in plain English and get answers grounded in retrieved source context via RAG—anchored to your documents.",
-    image: "/images/docqueryai_image.png",
+    image: "/demo_docqueryai.gif",
     links: [
       {
         label: "GitHub",
