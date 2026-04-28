@@ -73,6 +73,7 @@ function ProjectCard({ project }: { project: Project }) {
   const [imgOk, setImgOk] = useState(!!project.image);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const playbackRate = project.videoPreview?.playbackRate ?? 1;
+  const isGifImage = project.image?.toLowerCase().endsWith(".gif") ?? false;
 
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--card)] transition hover:border-[var(--accent)]/40">
@@ -103,7 +104,7 @@ function ProjectCard({ project }: { project: Project }) {
           <img
             src={encodeURI(project.image)}
             alt=""
-            className="absolute inset-0 h-full w-full object-cover"
+            className={`absolute inset-0 h-full w-full ${isGifImage ? "object-contain" : "object-cover"}`}
             onError={() => setImgOk(false)}
           />
         ) : (
